@@ -1,13 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Model, Server } from 'miragejs'
 import surveyData from './mockData/survey.json'
 import { SurveyPage } from './pages/SurveyPage/SurveyPage'
 
-import { createBrowserRouter, IndexRouteObject, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { SuccessPage } from './pages/SuccessPage/SuccessPage'
 
 const data = surveyData.data
@@ -46,9 +45,8 @@ root.render(
   // TODO fix this
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  <RouterProvider router={router}>
-    <App />
-  </RouterProvider>,
+  <RouterProvider router={router}/>
+
 )
 
 // If you want to start measuring performance in your app, pass a function
