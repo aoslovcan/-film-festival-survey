@@ -4,31 +4,51 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Model, Server } from 'miragejs'
-import  surveyData  from './mockData/survey.json';
+import surveyData from './mockData/survey.json'
+import { SurveyPage } from './pages/SurveyPage/SurveyPage'
 
-const data = surveyData.data;
+import { createBrowserRouter, IndexRouteObject, RouterProvider } from 'react-router-dom'
+import { SuccessPage } from './pages/SuccessPage/SuccessPage'
+
+const data = surveyData.data
 
 new Server({
   models: {
-    todos : Model
+    todos: Model,
   },
 
-  routes(){
-    this.namespace = 'api/v1';
+  routes() {
+    this.namespace = 'api/v1'
 
-    this.get('/survey', schema => {
+    this.get('/survey', () => {
       return {
-        data
+        data,
       }
     })
-  }
+  },
 })
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <SurveyPage />,
+  },
+
+  {
+    path: '/successful',
+    element: <SuccessPage/>
+  }
+])
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+
 root.render(
-  <React.StrictMode>
+  // TODO fix this
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  <RouterProvider router={router}>
     <App />
-  </React.StrictMode>,
+  </RouterProvider>,
 )
 
 // If you want to start measuring performance in your app, pass a function
