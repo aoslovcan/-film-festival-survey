@@ -3,6 +3,26 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { Model, Server } from 'miragejs'
+import  surveyData  from './mockData/survey.json';
+
+const data = surveyData.data;
+
+new Server({
+  models: {
+    todos : Model
+  },
+
+  routes(){
+    this.namespace = 'api/v1';
+
+    this.get('/survey', schema => {
+      return {
+        data
+      }
+    })
+  }
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
