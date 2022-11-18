@@ -35,8 +35,8 @@ const router = createBrowserRouter([
 
   {
     path: '/successful',
-    element: <SuccessPage/>
-  }
+    element: <SuccessPage />,
+  },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
@@ -45,8 +45,7 @@ root.render(
   // TODO fix this
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  <RouterProvider router={router}/>
-
+  <RouterProvider router={router} />,
 )
 
 // If you want to start measuring performance in your app, pass a function

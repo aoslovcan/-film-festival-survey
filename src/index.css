@@ -9,3 +9,22 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.centeredItems {
+  justify-content: center;
+}
+
+.form-element {
+  display: flex;
+  flex-direction: column;
+}
+
+.starContainer {
+  padding: 10px;
+}
