@@ -4,6 +4,7 @@ import { arrayOfNumber } from '../../../helpers/commonFunc'
 
 interface RatingAreaProps {
   starNumber: number
+  // TODO fix this type
   // eslint-disable-next-line @typescript-eslint/ban-types
   getRatingNumber: Function
 }
