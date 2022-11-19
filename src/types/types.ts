@@ -7,3 +7,19 @@ interface Question {
 }
 
 export type Questions = Question[]
+
+export interface Answer {
+  questionId: string
+  answer: string | number
+}
+
+export type Answers = Answer[]
+
+export type PayloadAnswers = {
+  data: {
+    type: string
+    attributes: {
+      answers: Answers
+    }
+  }
+}
