@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { RatingArea } from './RatingArea/RatingArea'
-import { Questions } from '../../types/types'
+import { Answer, Answers, Questions } from '../../types/types'
 import './SurveyForm.css'
 import { useFocus } from '../../helpers/customHooks'
 
 interface SurveyFormProps {
   questions: Questions
   // eslint-disable-next-line @typescript-eslint/ban-types
-  getFormData?: Function
+  handleSubmit: Function
 }
 
-export const SurveyForm = ({ questions }: SurveyFormProps) => {
-  const [rating, setRating] = useState<number | null>(1)
-  const [film, setFilm] = useState<string>('')
+export const SurveyForm = ({ questions, handleSubmit }: SurveyFormProps) => {
+  const [rating, setRating] = useState<number>(1)
+  const [answer, setAnswer] = useState<Answer>({ answer: '', questionId: '' })
 
   const focus = useFocus()
 
@@ -20,26 +20,34 @@ export const SurveyForm = ({ questions }: SurveyFormProps) => {
     setRating(data)
   }
 
+  const handleClick = () => {
+    const answers: Answers = [answer, { answer: rating, questionId: 'rating' }]
+    handleSubmit(answers)
+  }
+
   return (
     <div className='survey-form container'>
       {questions?.map(({ label, questionType, attributes }, i) => (
         <div key={i} className='form-element'>
           <label>{label}</label>
-          {questionType === 'text' ? (
-            <input
-              ref={focus}
-              type={questionType}
-              onChange={(e) => setFilm(e.target.value)}
-              value={film}
-            />
-          ) : (
+          {questionType === 'rating' ? (
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            <RatingArea starNumber={attributes.max | 5} getRatingNumber={getRating} />
+            <RatingArea starNumber={attributes.max} getRatingNumber={getRating} />
+          ) : (
+            <input
+              id={questionType}
+              ref={focus}
+              type={questionType}
+              onChange={(e) => setAnswer({ answer: e.target.value, questionId: e.target.id })}
+              value={answer.answer}
+            />
           )}
         </div>
       ))}
-      <button className='btn submitButton'>Submit</button>
+      <button onClick={handleClick} className='btn submitButton'>
+        Submit
+      </button>
     </div>
   )
 }
