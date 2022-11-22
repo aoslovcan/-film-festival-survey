@@ -4,10 +4,9 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 import { Model, Server } from 'miragejs'
 import surveyData from './mockData/survey.json'
-import { SurveyPage } from './pages/SurveyPage/SurveyPage'
-
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { SuccessPage } from './pages/SuccessPage/SuccessPage'
+import validationError from './mockData/errorInSubmitingAnswer.json'
+import { router } from './routes/Routes'
+import { RouterProvider } from 'react-router'
 
 const data = surveyData.data
 
@@ -24,20 +23,23 @@ new Server({
         data,
       }
     })
+
+    this.post('/survey/:id/answers', (schema, request) => {
+      const answers = JSON.parse(request.requestBody)
+
+      const valid = answers?.data?.attributes?.answers.every(
+        (answer: { answer: string | number }) => {
+          if (typeof answer.answer === 'string' && answer.answer !== '') {
+            return true
+          }
+          return !!(typeof answer.answer === 'number' && answer.answer)
+        },
+      )
+
+      return valid ? answers : validationError
+    })
   },
 })
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <SurveyPage />,
-  },
-
-  {
-    path: '/successful',
-    element: <SuccessPage/>
-  }
-])
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
@@ -45,8 +47,7 @@ root.render(
   // TODO fix this
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  <RouterProvider router={router}/>
-
+  <RouterProvider router={router} />,
 )
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,0 +1,40 @@
+.surveyForm {
+  justify-content: center;
+}
+
+.form-element {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.form-element input {
+  max-width: 500px;
+  border: none;
+  border-bottom: 1px solid grey;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form-element input:focus {
+  outline: none;
+}
+
+.submitButton {
+  width: 100px;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #808080;
+  border-radius: 3px;
+  background-color: #ffa500;
+}
+
+.submitButton:hover{
+  background-color: #cc8500;
+}
+
+.submitButton:focus {
+  outline: none;
+}
