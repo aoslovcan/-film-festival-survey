@@ -9,12 +9,13 @@
 }
 
 .form-element input {
-  width: 500px;
+  max-width: 500px;
   border: none;
   border-bottom: 1px solid grey;
   padding: 5px;
   margin-top: 10px;
   border-radius: 5px;
+  width: 100%;
 }
 
 .form-element input:focus {

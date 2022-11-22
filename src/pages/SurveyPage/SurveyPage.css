@@ -26,7 +26,6 @@
 
 .description p {
   font-size: 16px;
-  line-height: 2px;
   font-weight: 100;
 }
 
@@ -40,11 +39,10 @@
 .survey-header-content h3 {
   font-size: 30px;
   text-transform: uppercase;
-  line-height: 5px;
 }
 
 .empty {
-  min-width: 500px;
+  min-width: 54%;
 }
 
 .spaceBetween {
