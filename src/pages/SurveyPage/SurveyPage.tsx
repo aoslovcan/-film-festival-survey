@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom'
 export const SurveyPage = () => {
   const [surveyData, setSurveyData] = useState<Record<string, unknown> | any>()
   const surveyClient = new SurveyClient()
-
   const navigate = useNavigate()
 
   const getSurveyData = () => {
@@ -18,8 +17,6 @@ export const SurveyPage = () => {
   useEffect(() => {
     getSurveyData()
   }, [])
-
-  const description = surveyData?.attributes.description
 
   const submitForm = useCallback(
     (answers: Answers) => {
@@ -43,13 +40,24 @@ export const SurveyPage = () => {
     },
     [surveyData],
   )
+
   return (
-    <div className='container'>
-      <div className='survey-header'>
-        <h3>{surveyData?.attributes.title}</h3>
-        {description}
+    <div className='container survey'>
+      <div className='spaceBetween' />
+      <div className='surveyContent'>
+        <div className='empty'>
+          <div className='survey-header'>
+            <div className='survey-header-content'>
+              <h3>{surveyData?.attributes.title}</h3>
+              <div
+                className='description'
+                dangerouslySetInnerHTML={{ __html: surveyData?.attributes.description }}
+              />
+            </div>
+          </div>
+        </div>
+        <SurveyForm questions={surveyData?.attributes.questions} handleSubmit={submitForm} />
       </div>
-      <SurveyForm questions={surveyData?.attributes.questions} handleSubmit={submitForm} />
     </div>
   )
 }
