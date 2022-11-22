@@ -10,7 +10,7 @@ interface StarItemProps {
 export const StarItem: FC<StarItemProps> = ({ clicked, onChange }) => {
   return (
     <>
-      <FaStar onClick={onChange} color={clicked ? 'red' : 'orange'} />
+      <FaStar onClick={onChange} color={clicked ? '#ffa500' : '#808080'} />
     </>
   )
 }

@@ -25,8 +25,13 @@
   width: 100px;
   margin: auto;
   padding: 10px;
-  border: 1px solid grey;
+  border: 1px solid #808080;
   border-radius: 3px;
+  background-color: #ffa500;
+}
+
+.submitButton:hover{
+  background-color: #cc8500;
 }
 
 .submitButton:focus {
