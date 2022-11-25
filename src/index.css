@@ -34,3 +34,11 @@ code {
   padding: 10px;
   font-size: 38px;
 }
+
+.empty {
+  min-width: 54%;
+}
+
+.spaceBetween {
+  height: 200px;
+}
