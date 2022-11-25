@@ -1,0 +1,21 @@
+.successfullyContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  width: 32%;
+  margin: 200px auto;
+  border-radius: 3px;
+}
+
+.successfullyMessage {
+  font-size: 31px;
+  align-items: center;
+}
+
+.answers {
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
