@@ -10,7 +10,7 @@ interface RatingAreaProps {
 }
 
 export const RatingArea = ({ starNumber, getRatingNumber }: RatingAreaProps) => {
-  const [rating, setRating] = useState(1)
+  const [rating, setRating] = useState(0)
 
   const changeRating = (newRating: number) => {
     setRating(newRating)

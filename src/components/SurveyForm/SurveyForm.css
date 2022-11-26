@@ -38,3 +38,7 @@
 .submitButton:focus {
   outline: none;
 }
+
+.errorMessage {
+  color: #ff0000;
+}
