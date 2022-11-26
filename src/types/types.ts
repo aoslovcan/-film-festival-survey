@@ -23,3 +23,5 @@ export type PayloadAnswers = {
     }
   }
 }
+
+export type HandleSubmit = (data: Answers) => void
