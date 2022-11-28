@@ -9,7 +9,7 @@ export const SuccessPage = () => {
   const location = useLocation()
 
   const createStars = (n: number) => {
-    return arrayOfNumber(n).map((i) => <StarItem color='orange' />)
+    return arrayOfNumber(n).map((i) => <StarItem key={i} color='orange' />)
   }
 
   return (
