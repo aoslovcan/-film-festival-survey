@@ -46,7 +46,7 @@ export const SurveyForm = ({ questions, handleSubmit }: SurveyFormProps) => {
   const disableButton = rating <= 0 || !answer?.answer
 
   return (
-    <div className='survey-form container'>
+    <div className='survey-form container' data-testid="survey-form-container">
       {questions?.map(({ label, questionType, attributes }, i) => (
         <div key={i} className='form-element'>
           <label>{label}</label>
@@ -59,6 +59,7 @@ export const SurveyForm = ({ questions, handleSubmit }: SurveyFormProps) => {
             <>
               <input
                 id={questionType}
+                data-testid="answer-input"
                 ref={focus}
                 type={questionType}
                 onChange={(e) => setAnswer({ answer: e.target.value, questionId: e.target.id })}

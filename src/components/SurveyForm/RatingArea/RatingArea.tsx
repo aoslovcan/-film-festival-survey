@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { StarItem } from './StarItem/StarItem'
 import { arrayOfNumber } from '../../../helpers/commonFunc'
+import { RatingNumber } from '../../../types/types'
 
 interface RatingAreaProps {
   starNumber: number
-  // TODO fix this type
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  getRatingNumber: Function
+  getRatingNumber: RatingNumber
 }
 
 export const RatingArea = ({ starNumber, getRatingNumber }: RatingAreaProps) => {
@@ -18,7 +17,7 @@ export const RatingArea = ({ starNumber, getRatingNumber }: RatingAreaProps) => 
   }
 
   return (
-    <div className='starContainer'>
+    <div className='starContainer' data-testid='rating-area'>
       {arrayOfNumber(starNumber).map((value) => (
         <StarItem key={value} clicked={value <= rating} onChange={() => changeRating(value)} />
       ))}

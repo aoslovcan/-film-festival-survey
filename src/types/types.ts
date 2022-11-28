@@ -25,3 +25,4 @@ export type PayloadAnswers = {
 }
 
 export type HandleSubmit = (data: Answers) => void
+export type RatingNumber = (ratingNumber: number) => void

@@ -2,45 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
-import { Model, Server } from 'miragejs'
-import surveyData from './mockData/survey.json'
-import validationError from './mockData/errorInSubmitingAnswer.json'
 import { router } from './routes/Routes'
 import { RouterProvider } from 'react-router'
+import { makeServer } from './server/makeServer'
 
-const data = surveyData.data
-
-new Server({
-  models: {
-    todos: Model,
-  },
-
-  routes() {
-    this.namespace = 'api/v1'
-
-    this.get('/survey', () => {
-      return {
-        data,
-      }
-    })
-
-    this.post('/survey/:id/answers', (schema, request) => {
-      const answers = JSON.parse(request.requestBody)
-
-      const valid = answers?.data?.attributes?.answers.every(
-        (answer: { answer: string | number }) => {
-          if (typeof answer.answer === 'string' && answer.answer !== '') {
-            return true
-          }
-          return !!(typeof answer.answer === 'number' && answer.answer)
-        },
-      )
-
-      return valid ? answers : validationError
-    })
-  },
-})
-
+makeServer()
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
